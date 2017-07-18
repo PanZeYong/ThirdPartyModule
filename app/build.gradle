@@ -38,6 +38,14 @@ dependencies {
     compile "com.android.support:appcompat-v7:${libs.supportLibraryVersion}"
     compile "com.android.support:design:${libs.supportLibraryVersion}"
 
+    // Retrofit(网络)
+    compile "com.squareup.retrofit2:retrofit:${libs.retrofitVersion}"
+    compile "com.squareup.retrofit2:converter-gson:${libs.retrofitVersion}"
+
+    // OkHttp
+    compile "com.squareup.okhttp3:okhttp:${libs.okhttpVersion}"
+    compile "com.squareup.okhttp3:logging-interceptor:${libs.okhttpVersion}"
+
     // Timber(日志)
     compile "com.jakewharton.timber:timber:${libs.timberVersion}"
 
@@ -50,5 +58,7 @@ dependencies {
     releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:${libs.leakcanaryVersion}"
     testCompile "com.squareup.leakcanary:leakcanary-android-no-op:${libs.leakcanaryVersion}"
 
+    // 接入新浪微博 SDK
+    compile "com.sina.weibo.sdk:core:${libs.weiboSdkVersion}:openDefaultRelease@aar"
     testCompile "junit:junit:${libs.junitVersion}"
 }

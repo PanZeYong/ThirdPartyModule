@@ -8,4 +8,10 @@
        android:title="@string/third_party_login"
        android:icon="@drawable/login"
        app:showAsAction="ifRoom" />
+
+   <item
+       android:id="@+id/share"
+       android:title="@string/share"
+       android:icon="@drawable/share"
+       app:showAsAction="ifRoom" />
 </menu>
