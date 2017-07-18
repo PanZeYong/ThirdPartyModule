@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="width">256dp</dimen>
+    <dimen name="height">48dp</dimen>
+    <dimen name="margin_bottom">10dp</dimen>
+    <dimen name="radius">24dp</dimen>
+</resources>

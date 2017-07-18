@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/wechat_login"
+        android:text="@string/wechat_login"
+        style="@style/Login"/>
+
+    <Button
+        android:id="@+id/qq_login"
+        style="@style/Login"
+        android:text="@string/qq_login"/>
+
+    <Button
+        android:id="@+id/weibo_login"
+        style="@style/Login"
+        android:text="@string/weibo_login"/>
+</LinearLayout>

@@ -1,0 +1,54 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.jakewharton.butterknife'
+
+
+def configuration = rootProject.ext.configuration
+def libs = rootProject.ext.libraries
+
+android {
+    compileSdkVersion configuration.compileSdkVersion
+    buildToolsVersion configuration.buildToolsVersion
+    defaultConfig {
+        applicationId configuration.package
+        minSdkVersion configuration.minSdkVersion
+        targetSdkVersion configuration.targetSdkVersion
+        versionCode configuration.versionCode
+        versionName configuration.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    compile "com.android.support:appcompat-v7:${libs.supportLibraryVersion}"
+    compile "com.android.support:design:${libs.supportLibraryVersion}"
+
+    // Timber(日志)
+    compile "com.jakewharton.timber:timber:${libs.timberVersion}"
+
+    //ButterKnife(注解)
+    compile "com.jakewharton:butterknife:${libs.butterknifeVersion}"
+    annotationProcessor "com.jakewharton:butterknife-compiler:${libs.butterknifeVersion}"
+
+    // LeakCanary(内存检测)
+    debugCompile "com.squareup.leakcanary:leakcanary-android:${libs.leakcanaryVersion}"
+    releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:${libs.leakcanaryVersion}"
+    testCompile "com.squareup.leakcanary:leakcanary-android-no-op:${libs.leakcanaryVersion}"
+
+    testCompile "junit:junit:${libs.junitVersion}"
+}
