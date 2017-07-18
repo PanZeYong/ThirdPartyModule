@@ -44,19 +44,23 @@ public abstract class BaseFragment<P extends BasePresenter>
      */
     protected abstract void init(View view);
 
-    abstract protected P bindPresenter();
+    protected abstract P bindPresenter();
+
+    protected abstract String getClassTag();
+
+    protected abstract void release();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Timber.d("onCreate");
+        Timber.d(getClassTag() + " : onCreate");
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        Timber.d("onCreateView");
+        Timber.d(getClassTag() + " : onCreateView");
         View view = inflater.inflate(initContentView(), container, false);
         this.unbind = ButterKnife.bind(this, view);
         this.mPresenter = bindPresenter();
@@ -67,39 +71,40 @@ public abstract class BaseFragment<P extends BasePresenter>
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Timber.d("onViewCreated");
+        Timber.d(getClassTag() + " : onViewCreated");
         init(view);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Timber.d("onActivityCreated");
+        Timber.d(getClassTag() + " : onActivityCreated");
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        Timber.d("onAttach");
+        Timber.d(getClassTag() + " : onAttach");
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        Timber.d("onDetach");
+        Timber.d(getClassTag() + " : onDetach");
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        Timber.d("onDestroyView");
+        Timber.d(getClassTag() + " : onDestroyView");
         unbind.unbind();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Timber.d("onDestroy");
+        Timber.d(getClassTag() + " : onDestroy");
+        release();
         ThirdPartyModuleApplication.getRefWatcher(getActivity()).watch(this);
     }
 }

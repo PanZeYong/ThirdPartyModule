@@ -3,6 +3,7 @@
 buildscript {
     repositories {
         jcenter()
+        maven { url "https://dl.bintray.com/thelasterstar/maven/" }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.3'
@@ -15,6 +16,7 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
+        maven { url "https://dl.bintray.com/thelasterstar/maven/" }
     }
 }
 
@@ -37,8 +39,11 @@ ext {
             junitVersion                :   "4.12",
             espressoVersion             :   "2.2.2",
             supportLibraryVersion       :   "25.3.1",
+            retrofitVersion             :   "2.1.0",
+            okhttpVersion               :   "3.4.2",
             timberVersion               :   "4.5.0",
             butterknifeVersion          :   "8.4.0",
             leakcanaryVersion           :   "1.5",
+            weiboSdkVersion             :   "2.0.3",
     ]
 }

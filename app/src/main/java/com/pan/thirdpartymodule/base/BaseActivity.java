@@ -103,7 +103,12 @@ public abstract class BaseActivity<P extends BasePresenter>
     protected void onDestroy() {
         super.onDestroy();
         ButterKnife.bind(this).unbind();
+        release();
         Timber.d("onDestroy");
+
+        if (null != mTransaction) {
+            mTransaction = null;
+        }
     }
 
     protected void replace(@IdRes int containerViewId, Fragment fragment) {
