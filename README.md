@@ -99,8 +99,8 @@
 		ssoHandler.authorize(new SelfWbAuthListener());
 
 		// 只通过微博客户端进行授权
-	ssoHandler.authorizeClientSso(new SelfWbAuthListener());
-
+		ssoHandler.authorizeClientSso(new SelfWbAuthListener());
+		
 		// 通过 SDK 自带的 WebView 打开 H5 页面进行授权
 		ssoHandler.authorizeWeb(new SelfWbAuthListener());
 		```
