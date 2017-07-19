@@ -28,13 +28,13 @@
 				jcenter()
 				maven { url "https://dl.bintray.com/thelasterstar/maven/" }
 			}
-	}
+		}
 	
 		allprojects {
 			repositories {
 				maven { url "https://dl.bintray.com/thelasterstar/maven/" }
 			}
-	}
+		}
 		```
 	
 		修改主 modules 下 build.gradle 文件
@@ -43,7 +43,7 @@
 		dependencies {
     		// 接入新浪微博 SDK
     		compile "com.sina.weibo.sdk:core:2.0.6:openDefaultRelease@aar"
-	}
+		}
 		```
 	
 - 认证授权
@@ -54,11 +54,11 @@
 		WbSdk.install(this, new AuthInfo(this,Constants.APP_KEY,Constants.REDIRECT_URL, Constants.SCOPE));
 		```
 	
-		**APP_KEY：**平台唯一的标识。
+		APP_KEY：平台唯一的标识。
 	
-		**REDIRECT_URL：**授权回调，默认值为 https://api.weibo.com/oauth2/default.html
+		REDIRECT_URL：授权回调，默认值为 https://api.weibo.com/oauth2/default.html
 	
-		**SCODE：**需要请求的权限。
+		SCODE：需要请求的权限。
 		
 	- 初始化 SsoHandler 对象
 		
@@ -89,7 +89,7 @@
 			public void onFailure(WbConnectErrorMessage wbConnectErrorMessage) {
 				mView.showMessage(wbConnectErrorMessage.getErrorCode());
 			}
-    }
+    	}
 	```
 	
 	- 调用方法
@@ -114,7 +114,7 @@
 			if (mSsoHandler != null) {
 				mSsoHandler.authorizeCallBack(requestCode, resultCode, data);
 			}
-}
+		}
 		```
 		
 以上只是自己在参照官方文档写 demo 后的简要总结，具体还是得看官方文档：
