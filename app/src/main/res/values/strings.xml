@@ -10,4 +10,12 @@
     <string name="wechat_share">微信分享</string>
     <string name="qq_share">QQ 分享</string>
     <string name="weibo_share">微博分享</string>
+
+    <string name="weibosdk_demo_share_text_template">我正在使用微博客户端发博器分享文字</string>
+
+    <string name="success">分享成功</string>
+    <string name="fail">分享失败</string>
+    <string name="cancel">分享取消</string>
+    <string name="text">午读 | 做交易，知识和逻辑缺一不可 #金十数据#
+        https://news.jin10.com/details.html?id=14741</string>
 </resources>

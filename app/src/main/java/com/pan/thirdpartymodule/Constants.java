@@ -17,4 +17,7 @@ public class Constants {
                     + "friendships_groups_read,friendships_groups_write,statuses_to_me_read,"
                     + "follow_app_official_microblog," + "invitation_write";
 
+
+    public static final String WECHAT_APP_KEY = "wx50dd4844c0fa1688";
+
 }

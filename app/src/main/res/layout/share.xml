@@ -7,17 +7,17 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/tv_wechat_share"
+        android:id="@+id/btn_wechat_share"
         android:text="@string/wechat_share"
         style="@style/Button"/>
 
     <Button
-        android:id="@+id/tv_qq_share"
+        android:id="@+id/btn_qq_share"
         style="@style/Button"
         android:text="@string/qq_share"/>
 
     <Button
-        android:id="@+id/tv_weibo_share"
+        android:id="@+id/btn_weibo_share"
         style="@style/Button"
         android:text="@string/weibo_share"/>
 

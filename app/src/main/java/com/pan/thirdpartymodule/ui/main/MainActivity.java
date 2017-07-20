@@ -38,6 +38,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainVie
         mPresenter.attachView(this);
         initActionBarDrawerToggle();
         replace(R.id.container, LoginFragment.newInstance());
+        setStatusBarColor();
     }
 
     @Override

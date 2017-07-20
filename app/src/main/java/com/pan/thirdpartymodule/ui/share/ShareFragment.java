@@ -4,14 +4,18 @@ import android.view.View;
 
 import com.pan.thirdpartymodule.R;
 import com.pan.thirdpartymodule.base.BaseFragment;
-import com.pan.thirdpartymodule.base.BasePresenter;
+
+
+import butterknife.OnClick;
 
 /**
  * Author : Pan
  * Date : 18/07/2017
  */
 
-public class ShareFragment extends BaseFragment {
+public class ShareFragment extends BaseFragment<SharePresenter>
+        implements ShareView{
+
     @Override
     protected int initContentView() {
         return R.layout.share;
@@ -19,12 +23,12 @@ public class ShareFragment extends BaseFragment {
 
     @Override
     protected void init(View view) {
-
+        mPresenter.attachView(this);
     }
 
     @Override
-    protected BasePresenter bindPresenter() {
-        return null;
+    protected SharePresenter bindPresenter() {
+        return new SharePresenterImpl(getActivity());
     }
 
     @Override
@@ -34,7 +38,12 @@ public class ShareFragment extends BaseFragment {
 
     @Override
     protected void release() {
+        mPresenter.detachView();
+    }
 
+    @OnClick(R.id.btn_weibo_share)
+    public void shareByWeiBo() {
+        mPresenter.startWeiBoShareActivity();
     }
 
     public static ShareFragment newInstance() {
