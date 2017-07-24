@@ -63,7 +63,6 @@ public abstract class BaseActivity<P extends BasePresenter>
 
         this.mContext = this;
         this.mPresenter = bindPresenter();
-
 //        setStatusBarColor();
         init();
         registerListener();

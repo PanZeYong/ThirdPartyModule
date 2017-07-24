@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 
 import com.pan.thirdpartymodule.ui.share.weibo.WeiBoShareActivity;
+import com.pan.thirdpartymodule.wxapi.WxEntryActivity;
 
 /**
  * Author : Pan
@@ -22,6 +23,11 @@ public class SharePresenterImpl extends SharePresenter {
     @Override
     public void startWeiBoShareActivity() {
         WeiBoShareActivity.startActivity(mContext);
+    }
+
+    @Override
+    public void startWeChatShareActivity() {
+        WxEntryActivity.startActivity(mContext);
     }
 
     @Override

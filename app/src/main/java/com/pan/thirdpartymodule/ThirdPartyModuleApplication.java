@@ -27,6 +27,7 @@ public class ThirdPartyModuleApplication extends Application {
 
         Timber.plant(new Timber.DebugTree());
 
+        // 接入新浪微博客户端
         WbSdk.install(this, new AuthInfo(this, Constants.WEI_BO_APP_KEY,
                 Constants.REDIRECT_URL, Constants.SCOPE));
     }

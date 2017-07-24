@@ -18,4 +18,10 @@
     <string name="cancel">分享取消</string>
     <string name="text">午读 | 做交易，知识和逻辑缺一不可 #金十数据#
         https://news.jin10.com/details.html?id=14741</string>
+
+    <string name="register_to_wechat">第三方应用注册到微信</string>
+    <string name="goto_wechat">第三方应用跳转到微信发送消息页面</string>
+    <string name="launch_wechat">启动微信</string>
+    <string name="check_timeline_supported">检查是否支持发送朋友圈</string>
+    <string name="scan_qr_code_login">扫码登录</string>
 </resources>

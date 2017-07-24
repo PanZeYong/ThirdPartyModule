@@ -60,4 +60,7 @@ dependencies {
     // 接入新浪微博 SDK
     compile "com.sina.weibo.sdk:core:${libs.weiboSdkVersion}:openDefaultRelease@aar"
     testCompile "junit:junit:${libs.junitVersion}"
+
+    // 接入微信 SDK
+    compile "com.tencent.mm.opensdk:wechat-sdk-android-with-mta:${libs.wechatSdkVersion}"
 }

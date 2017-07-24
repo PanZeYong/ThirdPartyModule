@@ -41,9 +41,20 @@ public class ShareFragment extends BaseFragment<SharePresenter>
         mPresenter.detachView();
     }
 
-    @OnClick(R.id.btn_weibo_share)
-    public void shareByWeiBo() {
-        mPresenter.startWeiBoShareActivity();
+    @OnClick({R.id.btn_wechat_share, R.id.btn_weibo_share})
+    public void click(View view) {
+        switch (view.getId()) {
+            case R.id.btn_wechat_share:
+                mPresenter.startWeChatShareActivity();
+                break;
+
+            case R.id.btn_weibo_share:
+                mPresenter.startWeiBoShareActivity();
+                break;
+
+            default:
+                break;
+        }
     }
 
     public static ShareFragment newInstance() {

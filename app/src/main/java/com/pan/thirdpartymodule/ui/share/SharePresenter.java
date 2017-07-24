@@ -9,4 +9,6 @@ import com.pan.thirdpartymodule.base.BasePresenter;
 
 public abstract class SharePresenter extends BasePresenter<ShareView>{
     public abstract void startWeiBoShareActivity();
+
+    public abstract void startWeChatShareActivity();
 }

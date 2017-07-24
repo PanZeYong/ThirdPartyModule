@@ -7,7 +7,7 @@ package com.pan.thirdpartymodule;
 
 public class Constants {
 
-    // 接入新浪微博 SDK 所需参数
+    // 接入新浪微博 SDK
     public static final String WEI_BO_APP_KEY = "1098831904";
 
     public static final String REDIRECT_URL = "https://api.weibo.com/oauth2/default.html";
@@ -18,6 +18,10 @@ public class Constants {
                     + "follow_app_official_microblog," + "invitation_write";
 
 
+    // 接入微信 SDK
     public static final String WECHAT_APP_KEY = "wx50dd4844c0fa1688";
+
+    public static final int TIMELINE_SUPPORTED_VERSION = 0x21020001;
+
 
 }
