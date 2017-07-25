@@ -43,7 +43,7 @@ public class WeChatSharePresenterImpl extends WeChatSharePresenter{
 
     @Override
     public void gotoWX() {
-
+        WeChatShareActivity.startActivity(mContext);
     }
 
     @Override

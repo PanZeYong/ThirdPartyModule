@@ -29,6 +29,8 @@
         <activity
             android:name=".wxapi.WxEntryActivity"
             android:exported="true" />
+
+        <activity android:name=".ui.share.wechat.WeChatShareActivity" />
     </application>
 
 </manifest>
