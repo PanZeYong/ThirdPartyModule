@@ -18,4 +18,8 @@ public abstract class WeChatSharePresenter extends BasePresenter<WeChatView>{
     public abstract void checkTimelineSupported(IWXAPI iwxapi);
 
     public abstract void scanQrCodeLogin();
+
+    public abstract void sendText(IWXAPI iwxapi);
+
+    public abstract void sendImage(IWXAPI iwxapi);
 }

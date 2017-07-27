@@ -1,10 +1,18 @@
 package com.pan.thirdpartymodule.ui.share.wechat;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.annotation.Nullable;
 import android.widget.Toast;
 
 import com.pan.thirdpartymodule.Constants;
+import com.pan.thirdpartymodule.R;
+import com.pan.thirdpartymodule.util.Utils;
+import com.tencent.mm.opensdk.modelmsg.SendMessageToWX;
+import com.tencent.mm.opensdk.modelmsg.WXImageObject;
+import com.tencent.mm.opensdk.modelmsg.WXMediaMessage;
+import com.tencent.mm.opensdk.modelmsg.WXTextObject;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 
 /**
@@ -67,5 +75,56 @@ public class WeChatSharePresenterImpl extends WeChatSharePresenter{
     @Override
     public void scanQrCodeLogin() {
 
+    }
+
+    @Override
+    public void sendText(IWXAPI iwxapi) {
+        WXTextObject textObject = new WXTextObject();
+        textObject.text = "微信分享文本示例";
+
+        WXMediaMessage message = new WXMediaMessage();
+        message.mediaObject = textObject;
+        message.title = "微信分享";
+        message.description = "微信分享有很多类型，文本分享是其中一种";
+        message.mediaTagName = "WeChat";
+        message.messageAction = "com.pan.thirdpartymodule";
+        message.messageExt = "Ext";
+
+        SendMessageToWX.Req req = new SendMessageToWX.Req();
+        req.transaction = buildTransaction("text");
+        req.message = message;
+        req.scene = SendMessageToWX.Req.WXSceneTimeline;
+
+        iwxapi.sendReq(req);
+    }
+
+    /**
+     * 图片来源：resource、file、network
+     * @param iwxapi
+     */
+    @Override
+    public void sendImage(IWXAPI iwxapi) {
+        Bitmap bitmap = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.picture);
+        WXImageObject imageObject = new WXImageObject(bitmap);
+
+        WXMediaMessage message = new WXMediaMessage();
+        message.mediaObject = imageObject;
+        message.title = "微信分享";
+        message.description = "微信分享有很多类型，图片分享是其中一种";
+
+        Bitmap thumbBitmap = Bitmap.createScaledBitmap(bitmap, 160, 240, true);
+        bitmap.recycle();
+        message.thumbData = Utils.bmpToByteArray(thumbBitmap, true);
+
+        SendMessageToWX.Req req = new SendMessageToWX.Req();
+        req.transaction = buildTransaction("img");
+        req.message = message;
+        req.scene = SendMessageToWX.Req.WXSceneTimeline;
+
+        iwxapi.sendReq(req);
+    }
+
+    private String buildTransaction(final String type) {
+        return (type == null) ? String.valueOf(System.currentTimeMillis()) : type + System.currentTimeMillis();
     }
 }
