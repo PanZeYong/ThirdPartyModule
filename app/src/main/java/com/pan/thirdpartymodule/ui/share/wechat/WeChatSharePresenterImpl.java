@@ -15,6 +15,8 @@ import com.tencent.mm.opensdk.modelmsg.WXMediaMessage;
 import com.tencent.mm.opensdk.modelmsg.WXTextObject;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 
+import butterknife.BindString;
+
 /**
  * Author : Pan
  * Date : 24/07/2017
@@ -24,6 +26,12 @@ public class WeChatSharePresenterImpl extends WeChatSharePresenter{
     private WeChatView mView;
 
     private Context mContext;
+
+    @BindString(R.string.share_image_success)
+    protected String SHARE_IMAGE_SUCCESS;
+
+    @BindString(R.string.share_image_fail)
+    protected String SHARE_IMAGE_FAIL;
 
     public WeChatSharePresenterImpl(Context context) {
         this.mContext = context;
@@ -112,16 +120,17 @@ public class WeChatSharePresenterImpl extends WeChatSharePresenter{
         message.title = "微信分享";
         message.description = "微信分享有很多类型，图片分享是其中一种";
 
-        Bitmap thumbBitmap = Bitmap.createScaledBitmap(bitmap, 160, 240, true);
+        Bitmap thumbBitmap = Utils.compressImage(mContext);
         bitmap.recycle();
         message.thumbData = Utils.bmpToByteArray(thumbBitmap, true);
 
         SendMessageToWX.Req req = new SendMessageToWX.Req();
         req.transaction = buildTransaction("img");
         req.message = message;
-        req.scene = SendMessageToWX.Req.WXSceneTimeline;
+        req.scene = SendMessageToWX.Req.WXSceneSession;
 
-        iwxapi.sendReq(req);
+        Toast.makeText(mContext, iwxapi.sendReq(req) ? SHARE_IMAGE_SUCCESS : SHARE_IMAGE_FAIL,
+                Toast.LENGTH_LONG).show();
     }
 
     private String buildTransaction(final String type) {

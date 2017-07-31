@@ -82,4 +82,7 @@
 
     <string name="get_token_from_weixin">获取微信访问Token</string>
     <string name="unregister_from_weixin">从微信反注册</string>
+
+    <string name="share_image_success">微信分享图片成功</string>
+    <string name="share_image_fail">微信分享图片失败</string>
 </resources>
