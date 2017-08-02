@@ -22,4 +22,6 @@ public abstract class WeChatSharePresenter extends BasePresenter<WeChatView>{
     public abstract void sendText(IWXAPI iwxapi);
 
     public abstract void sendImage(IWXAPI iwxapi);
+
+    public abstract void sendMusic(IWXAPI iwxapi);
 }

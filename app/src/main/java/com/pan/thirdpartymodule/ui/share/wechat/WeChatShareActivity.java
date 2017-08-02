@@ -60,6 +60,10 @@ public class WeChatShareActivity extends BaseActivity<WeChatSharePresenter> impl
                 mPresenter.sendImage(mIWXAPI);
                 break;
 
+            case R.id.send_music:
+                mPresenter.sendMusic(mIWXAPI);
+                break;
+
             default:
                 break;
         }

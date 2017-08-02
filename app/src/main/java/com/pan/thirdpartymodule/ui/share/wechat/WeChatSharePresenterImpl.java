@@ -12,6 +12,7 @@ import com.pan.thirdpartymodule.util.Utils;
 import com.tencent.mm.opensdk.modelmsg.SendMessageToWX;
 import com.tencent.mm.opensdk.modelmsg.WXImageObject;
 import com.tencent.mm.opensdk.modelmsg.WXMediaMessage;
+import com.tencent.mm.opensdk.modelmsg.WXMusicObject;
 import com.tencent.mm.opensdk.modelmsg.WXTextObject;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 
@@ -120,7 +121,7 @@ public class WeChatSharePresenterImpl extends WeChatSharePresenter{
         message.title = "微信分享";
         message.description = "微信分享有很多类型，图片分享是其中一种";
 
-        Bitmap thumbBitmap = Utils.compressImage(mContext);
+        Bitmap thumbBitmap = Utils.compressImage(bitmap);
         bitmap.recycle();
         message.thumbData = Utils.bmpToByteArray(thumbBitmap, true);
 
@@ -131,6 +132,32 @@ public class WeChatSharePresenterImpl extends WeChatSharePresenter{
 
         Toast.makeText(mContext, iwxapi.sendReq(req) ? SHARE_IMAGE_SUCCESS : SHARE_IMAGE_FAIL,
                 Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void sendMusic(IWXAPI iwxapi) {
+        WXMusicObject musicObject = new WXMusicObject();
+        musicObject.musicUrl = "http://staff2.ustc.edu.cn/~wdw/softdown/index.asp/0042515_05.ANDY.mp3";
+//        musicObject.musicUrl = "http://www.170mv.com/kw/other.web.ra01.sycdn.kuwo.cn/resource/n3/64/1/3432690767.mp3";
+
+        WXMediaMessage message = new WXMediaMessage();
+        message.mediaObject = musicObject;
+        message.title = "分享音乐";
+        message.description = "微信分享音乐示例";
+
+        Bitmap bitmap = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.send_music_thumb);
+        Bitmap thumbBitmap = Utils.compressImage(bitmap);
+        bitmap.recycle();
+        message.thumbData = Utils.bmpToByteArray(thumbBitmap, true);
+
+        SendMessageToWX.Req req = new SendMessageToWX.Req();
+        req.transaction = buildTransaction("music");
+        req.message = message;
+        req.scene = SendMessageToWX.Req.WXSceneFavorite;
+
+        Toast.makeText(mContext, iwxapi.sendReq(req) ? "分享音乐成功" : "分享音乐失败",
+                Toast.LENGTH_LONG).show();
+
     }
 
     private String buildTransaction(final String type) {

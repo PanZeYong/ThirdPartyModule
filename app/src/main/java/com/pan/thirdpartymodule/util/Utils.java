@@ -39,17 +39,17 @@ public class Utils {
      * 参考链接：http://wuzheng.site/2016/11/29/Android%E5%BE%AE%E5%8D%9A%E3%80%81%E5%BE%AE%E4%BF%A1%
      * E5%88%86%E4%BA%ABSDK%E5%9B%BE%E7%89%87%E5%A4%A7%E5%B0%8F%E9%99%90%E5%88%B6/
      *
-     * @param  context
+     * @param  bitmap
      * @return
      */
-    public static Bitmap compressImage(Context context) {
+    public static Bitmap compressImage(Bitmap bitmap) {
         // 32KB, api doc:http:sinaweibosdk.github.io/weibo_android_sdk/doc/com/sina/weibo/sdk/api/BaseMediaObject.html#setThumbImage(Bitmap)
         int MAX_SIZE_THUMBNAIL_BYTE = 1 << 15;
 
         // 2MB, api doc: http://sinaweibosdk.github.io/weibo_android_sdk/doc/com/sina/weibo/sdk/api/ImageObject.html#imageData
         int MAX_SIZE_LARGE_BYTE = 1 << 21;
 
-        Bitmap originalImg = BitmapFactory.decodeResource(context.getResources(), R.drawable.picture);
+        Bitmap originalImg = bitmap;
         Bitmap thumbnailImg = originalImg;
 
         if (thumbnailImg.getByteCount() > MAX_SIZE_THUMBNAIL_BYTE) {
