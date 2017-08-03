@@ -1,20 +1,29 @@
 package com.pan.thirdpartymodule.ui.share.wechat;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.pan.thirdpartymodule.Constants;
 import com.pan.thirdpartymodule.R;
 import com.pan.thirdpartymodule.util.Utils;
+import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import com.tencent.mm.opensdk.modelmsg.SendMessageToWX;
+import com.tencent.mm.opensdk.modelmsg.WXAppExtendObject;
 import com.tencent.mm.opensdk.modelmsg.WXImageObject;
 import com.tencent.mm.opensdk.modelmsg.WXMediaMessage;
+import com.tencent.mm.opensdk.modelmsg.WXMiniProgramObject;
 import com.tencent.mm.opensdk.modelmsg.WXMusicObject;
 import com.tencent.mm.opensdk.modelmsg.WXTextObject;
+import com.tencent.mm.opensdk.modelmsg.WXVideoObject;
+import com.tencent.mm.opensdk.modelmsg.WXWebpageObject;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
+
+import java.io.File;
 
 import butterknife.BindString;
 
@@ -87,7 +96,7 @@ public class WeChatSharePresenterImpl extends WeChatSharePresenter{
     }
 
     @Override
-    public void sendText(IWXAPI iwxapi) {
+    public void shareText(IWXAPI iwxapi) {
         WXTextObject textObject = new WXTextObject();
         textObject.text = "微信分享文本示例";
 
@@ -112,7 +121,7 @@ public class WeChatSharePresenterImpl extends WeChatSharePresenter{
      * @param iwxapi
      */
     @Override
-    public void sendImage(IWXAPI iwxapi) {
+    public void shareImage(IWXAPI iwxapi) {
         Bitmap bitmap = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.picture);
         WXImageObject imageObject = new WXImageObject(bitmap);
 
@@ -135,7 +144,7 @@ public class WeChatSharePresenterImpl extends WeChatSharePresenter{
     }
 
     @Override
-    public void sendMusic(IWXAPI iwxapi) {
+    public void shareMusic(IWXAPI iwxapi) {
         WXMusicObject musicObject = new WXMusicObject();
         musicObject.musicUrl = "http://staff2.ustc.edu.cn/~wdw/softdown/index.asp/0042515_05.ANDY.mp3";
 //        musicObject.musicUrl = "http://www.170mv.com/kw/other.web.ra01.sycdn.kuwo.cn/resource/n3/64/1/3432690767.mp3";
@@ -158,6 +167,133 @@ public class WeChatSharePresenterImpl extends WeChatSharePresenter{
         Toast.makeText(mContext, iwxapi.sendReq(req) ? "分享音乐成功" : "分享音乐失败",
                 Toast.LENGTH_LONG).show();
 
+    }
+
+    @Override
+    public void shareVideo(IWXAPI iwxapi) {
+        WXVideoObject videoObject = new WXVideoObject();
+        videoObject.videoUrl = "http://v.youku.com/v_show/id_XMjkzOTAyMjg5Mg==.html?spm=a2hww.20023042.m_226600.5~5!2~5~5~5~5~A";
+
+        WXMediaMessage message = new WXMediaMessage();
+        message.mediaObject = videoObject;
+        message.title = "分享视频";
+        message.description = "微信分享视频";
+
+        Bitmap bitmap = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.send_music_thumb);
+        Bitmap thumbBitmap = Utils.compressImage(bitmap);
+        bitmap.recycle();
+        message.thumbData = Utils.bmpToByteArray(thumbBitmap, true);
+
+        SendMessageToWX.Req req = new SendMessageToWX.Req();
+        req.transaction = buildTransaction("video");
+        req.message = message;
+        req.scene = SendMessageToWX.Req.WXSceneTimeline;
+
+        Toast.makeText(mContext, iwxapi.sendReq(req) ? "分享视频成功" : "分享视频失败",
+                Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void shareWebPage(IWXAPI iwxapi) {
+        WXWebpageObject  webPageObject = new WXWebpageObject();
+        webPageObject.webpageUrl = "http://www.qq.com";
+
+        WXMediaMessage message = new WXMediaMessage();
+        message.mediaObject = webPageObject;
+        message.title = "分享网页";
+        message.description = "微信分享网页";
+
+        Bitmap bitmap = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.send_music_thumb);
+        Bitmap thumbBitmap = Utils.compressImage(bitmap);
+        bitmap.recycle();
+        message.thumbData = Utils.bmpToByteArray(thumbBitmap, true);
+
+        SendMessageToWX.Req req = new SendMessageToWX.Req();
+        req.transaction = buildTransaction("webpage");
+        req.message = message;
+        req.scene = SendMessageToWX.Req.WXSceneTimeline;
+
+        Toast.makeText(mContext, iwxapi.sendReq(req) ? "分享网页成功" : "分享网页失败",
+                Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void shareMiniProgram(IWXAPI iwxapi) {
+        WXMiniProgramObject miniProgramObject = new WXMiniProgramObject();
+        miniProgramObject.webpageUrl = "http://www.qq.com";
+        miniProgramObject.userName = "gh_d43f693ca31f";
+        miniProgramObject.path = "pages/play/index?cid=fvue88y1fsnk4w2&ptag=vicyao&seek=3219";
+
+        WXMediaMessage message = new WXMediaMessage();
+        message.mediaObject = miniProgramObject;
+        message.title = "分享小程序";
+        message.description = "微信分享小程序";
+
+        Bitmap bitmap = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.send_music_thumb);
+        Bitmap thumbBitmap = Utils.compressImage(bitmap);
+        bitmap.recycle();
+        message.thumbData = Utils.bmpToByteArray(thumbBitmap, true);
+
+        SendMessageToWX.Req req = new SendMessageToWX.Req();
+        req.transaction = buildTransaction("webpage");
+        req.message = message;
+        req.scene = SendMessageToWX.Req.WXSceneTimeline;
+
+        Toast.makeText(mContext, iwxapi.sendReq(req) ? "分享小程序成功" : "分享小程序失败",
+                Toast.LENGTH_LONG).show();
+
+    }
+
+    @Override
+    public void shareAppData(IWXAPI iwxapi) {
+        WXAppExtendObject appExtendObject = new WXAppExtendObject();
+        appExtendObject.filePath = Utils.getPath();
+        appExtendObject.extInfo = "发送照片";
+
+
+        WXMediaMessage message = new WXMediaMessage();
+        message.mediaObject = appExtendObject;
+        message.title = "APP 数据分享";
+        message.description = "微信分享 APP 数据";
+
+        Bitmap bitmap = BitmapFactory.decodeFile(Utils.getPath());
+        Bitmap thumbBitmap = Utils.compressImage(bitmap);
+        bitmap.recycle();
+        message.thumbData = Utils.bmpToByteArray(thumbBitmap, true);
+
+        SendMessageToWX.Req req = new SendMessageToWX.Req();
+        req.message = message;
+        req.transaction = buildTransaction("appdata");
+        req.scene = SendMessageToWX.Req.WXSceneTimeline;
+
+        Toast.makeText(mContext, iwxapi.sendReq(req) ? "分享 APP 数据成功" : "分享 APP 数据失败",
+                Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void getToken(IWXAPI iwxapi) {
+        SendAuth.Req req = new SendAuth.Req();
+        req.scope = "snsapi_userinfo";
+        req.state = "none";
+        Toast.makeText(mContext, iwxapi.sendReq(req) ? "获取 Token 成功" : "获取 Token 失败",
+                Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void unregister(IWXAPI iwxapi) {
+        iwxapi.unregisterApp();
+    }
+
+    @Override
+    public void openCamera() {
+        String dir = Utils.getSdPath() + "/share/";
+
+        File file = new File(dir);
+        if (!file.exists()) {
+            file.mkdirs();
+        }
+
+        Utils.takePhoto((Activity) mContext, dir, "app_data", 0x101);
     }
 
     private String buildTransaction(final String type) {

@@ -49,19 +49,59 @@ public class WeChatShareActivity extends BaseActivity<WeChatSharePresenter> impl
     }
 
     @OnClick({R.id.send_text, R.id.send_img, R.id.send_emoji, R.id.send_appbrand, R.id.send_webpage,
-    R.id.send_video, R.id.send_appdata, R.id.send_music})
+    R.id.send_video, R.id.send_appdata, R.id.send_music, R.id.unregister, R.id.get_token})
     public void click(View view) {
         switch (view.getId()) {
             case R.id.send_text:
-                mPresenter.sendText(mIWXAPI);
+                mPresenter.shareText(mIWXAPI);
                 break;
 
             case R.id.send_img:
-                mPresenter.sendImage(mIWXAPI);
+                mPresenter.shareImage(mIWXAPI);
                 break;
 
             case R.id.send_music:
-                mPresenter.sendMusic(mIWXAPI);
+                mPresenter.shareMusic(mIWXAPI);
+                break;
+
+            case R.id.send_video:
+                mPresenter.shareVideo(mIWXAPI);
+                break;
+
+            case R.id.send_webpage:
+                mPresenter.shareWebPage(mIWXAPI);
+                break;
+
+            case R.id.send_appbrand:
+                mPresenter.shareMiniProgram(mIWXAPI);
+                break;
+
+            case R.id.send_appdata:
+                mPresenter.openCamera();
+                break;
+
+
+            case R.id.get_token:
+                mPresenter.getToken(mIWXAPI);
+                break;
+
+            case R.id.unregister:
+                mPresenter.unregister(mIWXAPI);
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case 0x101:
+                if (RESULT_OK == resultCode) {
+                    mPresenter.shareAppData(mIWXAPI);
+                }
                 break;
 
             default:

@@ -85,4 +85,5 @@
 
     <string name="share_image_success">微信分享图片成功</string>
     <string name="share_image_fail">微信分享图片失败</string>
+    <string name="not_exist_pic">图片不存在</string>
 </resources>

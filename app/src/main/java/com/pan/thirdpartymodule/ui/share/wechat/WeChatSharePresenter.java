@@ -19,9 +19,23 @@ public abstract class WeChatSharePresenter extends BasePresenter<WeChatView>{
 
     public abstract void scanQrCodeLogin();
 
-    public abstract void sendText(IWXAPI iwxapi);
+    public abstract void shareText(IWXAPI iwxapi);
 
-    public abstract void sendImage(IWXAPI iwxapi);
+    public abstract void shareImage(IWXAPI iwxapi);
 
-    public abstract void sendMusic(IWXAPI iwxapi);
+    public abstract void shareMusic(IWXAPI iwxapi);
+
+    public abstract void shareVideo(IWXAPI iwxapi);
+
+    public abstract void shareWebPage(IWXAPI iwxapi);
+
+    public abstract void shareMiniProgram(IWXAPI iwxapi);
+
+    public abstract void shareAppData(IWXAPI iwxapi);
+
+    public abstract void getToken(IWXAPI iwxapi);
+
+    public abstract void unregister(IWXAPI iwxapi);
+
+    public abstract void openCamera();
 }
