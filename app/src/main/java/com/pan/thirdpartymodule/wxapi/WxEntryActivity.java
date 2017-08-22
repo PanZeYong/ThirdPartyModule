@@ -25,7 +25,7 @@ import timber.log.Timber;
  * Date : 24/07/2017
  */
 
-public class WxEntryActivity extends BaseActivity<WeChatSharePresenter>
+public class WXEntryActivity extends BaseActivity<WeChatSharePresenter>
         implements IWXAPIEventHandler, WeChatView{
 
     private IWXAPI mApi;
@@ -83,9 +83,9 @@ public class WxEntryActivity extends BaseActivity<WeChatSharePresenter>
      */
     @Override
     public void onResp(BaseResp baseResp) {
-        Timber.d("Response Type : " + baseResp.getType());
+        Timber.d("Response Type : " + baseResp.errCode);
 
-        Toast.makeText(this, "Type : " + baseResp.getType(), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Response Type : " + baseResp.getType(), Toast.LENGTH_LONG).show();
     }
 
     @OnClick({R.id.btn_register, R.id.btn_goto, R.id.btn_launch, R.id.btn_check_timeline_supported,
@@ -118,7 +118,7 @@ public class WxEntryActivity extends BaseActivity<WeChatSharePresenter>
     }
 
     public static void startActivity(Context context) {
-        Intent intent = new Intent(context, WxEntryActivity.class);
+        Intent intent = new Intent(context, WXEntryActivity.class);
         context.startActivity(intent);
     }
 }
