@@ -18,42 +18,6 @@
             android:layout_height="wrap_content"
             android:text="@string/target_scene"/>
 
-        <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/target_scene_session"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:textColor="@color/grey"
-                android:text="@string/target_scene_session"
-                android:onClick="onRadioButtonClicked"/>
-
-            <RadioButton
-                android:id="@+id/target_scene_timeline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/grey"
-                android:text="@string/target_scene_timeline"
-                android:onClick="onRadioButtonClicked"/>
-
-            <RadioButton
-                android:id="@+id/target_scene_favorite"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/grey"
-                android:text="@string/target_scene_favorite"
-                android:onClick="onRadioButtonClicked"/>
-        </RadioGroup>
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/send"/>
-
         <Button
             android:id="@+id/send_text"
             style="@style/Button"
@@ -95,12 +59,6 @@
             style="@style/Button"
             android:layout_margin="10dp"
             android:text="@string/send_appdata"/>
-
-        <Button
-            android:id="@+id/send_emoji"
-            style="@style/Button"
-            android:layout_margin="10dp"
-            android:text="@string/send_emoji"/>
 
         <Button
             android:id="@+id/get_token"

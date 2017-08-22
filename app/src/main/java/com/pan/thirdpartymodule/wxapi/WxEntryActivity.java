@@ -3,6 +3,7 @@ package com.pan.thirdpartymodule.wxapi;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
+import android.widget.Toast;
 
 import com.pan.thirdpartymodule.Constants;
 import com.pan.thirdpartymodule.R;
@@ -17,6 +18,7 @@ import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import butterknife.OnClick;
+import timber.log.Timber;
 
 /**
  * Author : Pan
@@ -29,6 +31,14 @@ public class WxEntryActivity extends BaseActivity<WeChatSharePresenter>
     private IWXAPI mApi;
 
     @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        Timber.d("onNewIntent");
+        setIntent(intent);
+        mApi.handleIntent(intent, this);
+    }
+
+    @Override
     protected int initContentView() {
         return R.layout.activity_wechat_share;
     }
@@ -37,6 +47,8 @@ public class WxEntryActivity extends BaseActivity<WeChatSharePresenter>
     protected void init() {
         mPresenter.attachView(this);
         mApi = WXAPIFactory.createWXAPI(this, Constants.WECHAT_APP_KEY, false);
+
+        mApi.handleIntent(getIntent(), this);
     }
 
     @Override
@@ -60,7 +72,9 @@ public class WxEntryActivity extends BaseActivity<WeChatSharePresenter>
      */
     @Override
     public void onReq(BaseReq baseReq) {
+        Timber.d("Request Type : " + baseReq.getType());
 
+        Toast.makeText(this, "Type : " + baseReq.getType(), Toast.LENGTH_LONG).show();
     }
 
     /**
@@ -69,7 +83,9 @@ public class WxEntryActivity extends BaseActivity<WeChatSharePresenter>
      */
     @Override
     public void onResp(BaseResp baseResp) {
+        Timber.d("Response Type : " + baseResp.getType());
 
+        Toast.makeText(this, "Type : " + baseResp.getType(), Toast.LENGTH_LONG).show();
     }
 
     @OnClick({R.id.btn_register, R.id.btn_goto, R.id.btn_launch, R.id.btn_check_timeline_supported,

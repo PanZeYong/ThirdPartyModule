@@ -48,7 +48,7 @@ public class WeChatShareActivity extends BaseActivity<WeChatSharePresenter> impl
         mPresenter.detachView();
     }
 
-    @OnClick({R.id.send_text, R.id.send_img, R.id.send_emoji, R.id.send_appbrand, R.id.send_webpage,
+    @OnClick({R.id.send_text, R.id.send_img, R.id.send_appbrand, R.id.send_webpage,
     R.id.send_video, R.id.send_appdata, R.id.send_music, R.id.unregister, R.id.get_token})
     public void click(View view) {
         switch (view.getId()) {
