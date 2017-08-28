@@ -21,6 +21,7 @@ import butterknife.OnClick;
 import timber.log.Timber;
 
 /**
+ * 解决方法链接：http://blog.csdn.net/yanzhenjie1003/article/details/44887341
  * Author : Pan
  * Date : 24/07/2017
  */

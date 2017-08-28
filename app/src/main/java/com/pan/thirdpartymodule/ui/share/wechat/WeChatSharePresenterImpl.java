@@ -92,7 +92,7 @@ public class WeChatSharePresenterImpl extends WeChatSharePresenter{
 
     @Override
     public void scanQrCodeLogin() {
-
+        WeChatScanQrCodeActivity.startActivity(mContext);
     }
 
     @Override

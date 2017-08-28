@@ -39,6 +39,8 @@
         </activity>
 
         <activity android:name=".ui.share.wechat.WeChatShareActivity" />
+
+        <activity android:name=".ui.share.wechat.WeChatScanQrCodeActivity"/>
     </application>
 
 </manifest>

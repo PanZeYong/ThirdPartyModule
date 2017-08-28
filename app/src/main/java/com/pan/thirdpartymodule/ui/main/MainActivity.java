@@ -14,6 +14,7 @@ import com.pan.thirdpartymodule.base.BaseActivity;
 import com.pan.thirdpartymodule.ui.login.LoginFragment;
 
 import butterknife.BindView;
+import timber.log.Timber;
 
 public class MainActivity extends BaseActivity<MainPresenter> implements MainView{
 
@@ -39,6 +40,8 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainVie
         initActionBarDrawerToggle();
         replace(R.id.container, LoginFragment.newInstance());
         setStatusBarColor();
+
+        Timber.d("Class : " + MainActivity.class);
     }
 
     @Override
